@@ -1,0 +1,11 @@
+transformers
+sentence-transformers
+accelerate
+faiss-cpu
+langchain
+streamlit
+torch
+PyPDF2
+tqdm
+python-dotenv
+numpy
