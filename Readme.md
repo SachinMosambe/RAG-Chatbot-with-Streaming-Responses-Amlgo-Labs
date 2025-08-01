@@ -135,21 +135,11 @@ The chatbot will return context-aware answers and also display the relevant docu
 
 ---
 
-## Screenshots
-
-You can include screenshots of your app here. For example:
-
-```
-[Insert image showing input field, streaming answer, and source chunks]
-```
-
----
 
 ## Demo Video
 
-If available, you can include a demo walkthrough link here:
 
-[Watch Demo](https://your-demo-link.com)
+[Watch Demo](https://drive.google.com/file/d/1TI5kXYmwm1uDqzPwHLe7ZOXk8Vv6pcOg/view?usp=sharing)
 
 ---
 

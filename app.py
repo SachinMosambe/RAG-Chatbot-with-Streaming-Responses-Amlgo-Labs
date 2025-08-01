@@ -13,17 +13,20 @@ st.sidebar.title("Model Info")
 st.sidebar.write("Current Model: TinyLlama/TinyLlama-1.1B-Chat-v1.0")
 st.sidebar.write(f"Chunks Indexed: {chatbot.get_num_chunks()}")
 
-# Initialize chat history
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+# Clear state
+if "answer" not in st.session_state:
+    st.session_state.answer = ""
+if "sources" not in st.session_state:
+    st.session_state.sources = []
 
-# Input field for user question
-user_input = st.text_input("Enter your question:")
-
-# Button to clear conversation
+# Clear button
 if st.button("Clear Conversation"):
-    st.session_state.chat_history = []
-    st.rerun()
+    st.session_state.answer = ""
+    st.session_state.sources = []
+    st.session_state.user_input = ""
+
+# Input field
+user_input = st.text_input("Enter your question:", key="user_input")
 
 # Generate and display answer
 if user_input:
@@ -35,27 +38,18 @@ if user_input:
             full_response += response_part
             sources = retrieved_chunks
 
-        st.session_state.chat_history.append({
-            "question": user_input,
-            "answer": full_response,
-            "sources": sources
-        })
+        st.session_state.answer = full_response
+        st.session_state.sources = sources
 
-# Display past chat history
-for idx, entry in enumerate(reversed(st.session_state.chat_history), 1):
-    st.markdown(f"### Question {len(st.session_state.chat_history) - idx + 1}")
-    st.markdown(entry["question"])
-    
+# Display only the final answer
+if st.session_state.answer:
     st.markdown("**Answer:**")
-    st.write(entry["answer"])
+    st.markdown(st.session_state.answer)
 
-    if entry["sources"]:
-        st.markdown("**Sources Used:**")
-        for i, chunk in enumerate(entry["sources"], 1):
-            st.markdown(f"Source {i}:")
-            st.code(chunk.page_content)
-            st.caption(f"Source: {chunk.metadata.get('source', 'Unknown')}")
-
-# Footer
-st.markdown("---")
-st.caption("RAG Chatbot powered by custom pipeline and Streamlit")
+# Display only the final sources
+if st.session_state.sources:
+    st.markdown("**Sources Used:**")
+    for i, chunk in enumerate(st.session_state.sources, 1):
+        st.markdown(f"**Source {i}:**")
+        st.markdown(chunk.page_content)
+        st.caption(f"Source: {chunk.metadata.get('source', 'Unknown')}")
