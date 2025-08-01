@@ -41,12 +41,11 @@ if user_input:
         st.session_state.answer = full_response
         st.session_state.sources = sources
 
-# Display only the final answer
+
 if st.session_state.answer:
     st.markdown("**Answer:**")
     st.markdown(st.session_state.answer)
 
-# Display only the final sources
 if st.session_state.sources:
     st.markdown("**Sources Used:**")
     for i, chunk in enumerate(st.session_state.sources, 1):
