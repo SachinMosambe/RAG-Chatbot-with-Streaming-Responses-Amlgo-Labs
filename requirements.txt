@@ -1,6 +1,5 @@
 transformers
 sentence-transformers
-accelerate
 faiss-cpu
 langchain
 streamlit
