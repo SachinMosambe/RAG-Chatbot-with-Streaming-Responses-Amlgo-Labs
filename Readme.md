@@ -1,6 +1,3 @@
-Here's a **clean, professional, emoji-free** version of your `README.md` file, written in a human style:
-
----
 
 # RAG Chatbot – TinyLlama + FAISS + Streamlit
 
@@ -149,4 +146,3 @@ This project is licensed under the MIT License. You are free to use, modify, and
 
 ---
 
-Let me know if you’d like help generating a `requirements.txt` file or adding a `.env.example` template.
